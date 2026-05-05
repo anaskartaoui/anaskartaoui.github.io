@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anas KARTAOUI</title>
+
+  <!-- Computer Modern via cdn.jsdelivr.net (Latin Modern Math / CMU Serif) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css" />
+
+  <style>
+    :root {
+      --cream: #faf8f2;
+      --ink:   #1a1a1a;
+      --muted: #555;
+      --rule:  #c8c0aa;
+      --accent:#2c5282;
+      --max-w: 720px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: "Computer Modern Serif", "CMU Serif", Georgia, serif;
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    /* ── Layout ─────────────────────────────── */
+    .page {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 3rem 2rem 6rem;
+    }
+
+    /* ── Nav ─────────────────────────────────── */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1.2rem 2rem;
+      border-bottom: 1px solid var(--rule);
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      position: sticky;
+      top: 0;
+      background: var(--cream);
+      z-index: 100;
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    nav a:hover { color: var(--ink); }
+
+    /* ── Header ─────────────────────────────── */
+    .header {
+      text-align: center;
+      padding: 4.5rem 0 2.5rem;
+      border-bottom: 1.5px solid var(--ink);
+    }
+    .header h1 {
+      font-size: 2.6rem;
+      font-weight: normal;
+      letter-spacing: 0.02em;
+      margin-bottom: .4rem;
+    }
+    .header .subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 1.2rem;
+    }
+    .header .links {
+      display: flex;
+      justify-content: center;
+      gap: 1.6rem;
+      font-size: 14px;
+      flex-wrap: wrap;
+    }
+    .header .links a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .header .links a:hover { text-decoration: underline; }
+
+    /* ── Sections ───────────────────────────── */
+    section {
+      margin-top: 3rem;
+      padding-top: 1rem;
+    }
+
+    section h2 {
+      font-size: 1.15rem;
+      font-weight: normal;
+      font-variant: small-caps;
+      letter-spacing: 0.08em;
+      border-bottom: 0.5px solid var(--rule);
+      padding-bottom: .4rem;
+      margin-bottom: 1.4rem;
+      color: var(--ink);
+    }
+
+    p { margin-bottom: .9rem; }
+
+    /* ── About ──────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 160px;
+      gap: 2rem;
+      align-items: start;
+    }
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 1px solid var(--rule);
+      object-fit: cover;
+      justify-self: center;
+    }
+    .avatar-placeholder {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 1px solid var(--rule);
+      background: #ede9df;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      justify-self: center;
+      color: var(--muted);
+    }
+
+    @media (max-width: 560px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .avatar-placeholder { margin: 0 auto 1rem; }
+    }
+
+    /* ── Education / Experience entries ─────── */
+    .entry {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: .5rem 1.4rem;
+      margin-bottom: 1.6rem;
+      align-items: start;
+    }
+    .entry-year {
+      font-size: 13px;
+      color: var(--muted);
+      padding-top: 2px;
+      text-align: right;
+      white-space: nowrap;
+    }
+    .entry-body h3 {
+      font-size: 1rem;
+      font-weight: normal;
+      font-style: italic;
+      margin-bottom: .1rem;
+    }
+    .entry-body .place {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: .3rem;
+    }
+    .entry-body p {
+      font-size: 15px;
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 480px) {
+      .entry { grid-template-columns: 1fr; }
+      .entry-year { text-align: left; }
+    }
+
+    /* ── Projects ───────────────────────────── */
+    .project {
+      margin-bottom: 1.8rem;
+      padding-left: 1.2rem;
+      border-left: 2px solid var(--rule);
+    }
+    .project h3 {
+      font-size: 1rem;
+      font-style: italic;
+      font-weight: normal;
+      margin-bottom: .2rem;
+    }
+    .project .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin: .5rem 0;
+    }
+    .tag {
+      font-size: 12px;
+      font-family: "Computer Modern Typewriter", "Courier New", monospace;
+      background: #ede9df;
+      color: var(--muted);
+      padding: 1px 7px;
+      border-radius: 2px;
+    }
+    .project a {
+      font-size: 13px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .project a:hover { text-decoration: underline; }
+
+    /* ── Skills ─────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+    }
+    .skill-group h3 {
+      font-size: 14px;
+      font-variant: small-caps;
+      letter-spacing: .06em;
+      font-weight: normal;
+      color: var(--muted);
+      margin-bottom: .5rem;
+    }
+    .skill-group ul {
+      list-style: none;
+      padding: 0;
+    }
+    .skill-group li {
+      font-size: 15px;
+      padding: 2px 0;
+    }
+    .skill-group li::before {
+      content: "— ";
+      color: var(--rule);
+    }
+
+    /* ── Contact ────────────────────────────── */
+    .contact-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+    .contact-list li {
+      display: flex;
+      gap: .8rem;
+      font-size: 15px;
+      align-items: baseline;
+    }
+    .contact-list .label {
+      font-size: 13px;
+      font-variant: small-caps;
+      letter-spacing: .05em;
+      color: var(--muted);
+      min-width: 80px;
+    }
+    .contact-list a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .contact-list a:hover { text-decoration: underline; }
+
+    /* ── Footer ─────────────────────────────── */
+    footer {
+      margin-top: 5rem;
+      border-top: 0.5px solid var(--rule);
+      padding-top: 1.2rem;
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#about">About</a>
+  <a href="#education">Education</a>
+  <a href="#experience">Experience</a>
+  <a href="#projects">Projects</a>
+  <a href="#skills">Skills</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<div class="page">
+
+  <!-- ── Header ── -->
+  <header class="header">
+    <h1>Anas KARTAOUI</h1>
+    <p class="subtitle">Cybersecurity &amp; AI · ENSICAEN · NAIST</p>
+    <div class="links">
+      <a href="https://github.com/anaskartaoui" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/anaskartaoui/" target="_blank">LinkedIn</a>
+      <a href="mailto:anas.kartaoui@ecole.ensicaen.fr">Email</a>
+      <a href="/cv.pdf" target="_blank">Curriculum Vitæ</a>
+    </div>
+  </header>
+
+  <!-- ── About ── -->
+  <section id="about">
+    <h2>About</h2>
+    <div class="about-grid">
+      <div>
+        <p>
+          I am a second-year engineering student at <em>ENSICAEN</em> (École Nationale Supérieure
+          d'Ingénieurs de Caen), specialising in Cybersecurity and Artificial Intelligence.
+          I am currently on a fourth-month <em>research internship</em> at
+          <em>NAIST</em> (Nara Institute of Science and Technology) in Japan, where I work on
+          machine learning and deep learning methods for vulnerability detection in C/C++ code.
+        </p>
+        <p>
+          My research interests sit at the intersection of software security, static analysis,
+          and deep learning for code. Outside of research I am drawn to sports analytics and data science applied to football.
+        </p>
+      </div>
+      <img class="avatar" src="4FEC070A-1E0D-4A8C-A32D-714501BF0F59_1_105_c.jpeg" alt="Anas" />
+    </div>
+  </section>
+
+  <!-- ── Education ── -->
+  <section id="education">
+    <h2>Education</h2>
+
+    <div class="entry">
+      <div class="entry-year">2024 – 2027</div>
+      <div class="entry-body">
+        <h3>Diplôme d'Ingénieur (Master degree) — Cybersecurity &amp; AI</h3>
+        <div class="place">ENSICAEN, Caen, France</div>
+        <p>Core curriculum: machine learning, adversarial attacks, network security, parallel computing, cryptography, software engineering.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2022 – 2024</div>
+      <div class="entry-body">
+        <h3>Classes Préparatoires MPSI / MP</h3>
+        <div class="place">Casablanca, Morocco</div>
+        <p>Intensive preparatory courses in mathematics, physics, and computer science.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Experience ── -->
+  <section id="experience">
+    <h2>Experience</h2>
+
+    <div class="entry">
+      <div class="entry-year">Apr – August 2026</div>
+      <div class="entry-body">
+        <h3>Special Research Intern — ML for Vulnerability Detection in C and C++ source code</h3>
+        <div class="place">NAIST, Nara, Japan · supervised by Dr. Youki Kadobayashi</div>
+        <p>
+          Research internship focused on applying machine learning and deep learning techniques to the problem of vulnerability detection in C and C++ source code.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Projects ── -->
+  <section id="projects">
+    <h2>Projects</h2>
+
+    <div class="project">
+      <h3>Premier League Scouting Tool</h3>
+      <p>
+        Data-driven football scouting dashboard built on FBref statistics.
+        PCA dimensionality reduction + K-Means clustering to identify player archetypes;
+        Random Forest classifier for role prediction. Deployed with Streamlit.
+      </p>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">scikit-learn</span>
+        <span class="tag">Streamlit</span>
+        <span class="tag">FBref</span>
+      </div>
+      <a href="https://github.com/anaskartaoui/pl-scouting-tool" target="_blank">→ GitHub</a>
+    </div>
+
+    <div class="project">
+      <h3>Qt6 Sudoku Assistant</h3>
+      <p>
+        Desktop application implementing MVC + Observer patterns with FR/EN internationalisation.
+        Includes constraint-propagation solver and step-by-step hint mode.
+      </p>
+      <div class="tags">
+        <span class="tag">C++</span>
+        <span class="tag">Qt6</span>
+        <span class="tag">MVC</span>
+      </div>
+      <a href="https://github.com/anaskartaoui/sudoku-assistant-qt" target="_blank">→ GitHub</a>
+    </div>
+
+    <div class="project">
+      <h3>Adversarial ML Study</h3>
+      <p>
+        Hands-on exploration of evasion attacks (FGSM, PGD, C&amp;W) and defences
+        (randomised smoothing, DP-SGD) on image classifiers, with ablation study
+        on certified robustness under l∞ perturbation budgets.
+      </p>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">PyTorch</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Skills ── -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Languages</h3>
+        <ul>
+          <li>C / C++</li>
+          <li>Java</li>
+          <li>Python</li>
+          <li>JavaScript / Node.js</li>
+          <li>Dart (Flutter)</li>
+          <li>Bash</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>ML &amp; Data</h3>
+        <ul>
+          <li>PyTorch / HuggingFace</li>
+          <li>scikit-learn</li>
+          <li>CodeBERT / Transformers</li>
+          <li>Tree-Sitter</li>
+          <li>Pandas / NumPy</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Security</h3>
+        <ul>
+          <li>Adversarial ML (FGSM/PGD/White-Box/Black-Box)</li>
+          <li>Network security / TLS / SSL / IPSec</li>
+          <li>Nmap / OpenVAS</li>
+          <li>Vulnerability analysis</li>
+          <li>Cryptography</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Tools &amp; Other</h3>
+        <ul>
+          <li>Git / GitHub Actions</li>
+          <li>Docker</li>
+          <li>LaTeX</li>
+          <li>Linux</li>
+          <li>Qt6</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contact ── -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <ul class="contact-list">
+      <li>
+        <span class="label">Email</span>
+        <a href="mailto:anas.kartaoui@ecole.ensicaen.fr">anas.kartaoui@ecole.ensicaen.fr</a>
+      </li>
+      <li>
+        <span class="label">GitHub</span>
+        <a href="https://github.com/anaskartaoui" target="_blank">github.com/anaskartaoui</a>
+      </li>
+      <li>
+        <span class="label">LinkedIn</span>
+        <a href="https://linkedin.com/in/anas-kartaoui" target="_blank">linkedin.com/in/anas-kartaoui</a>
+      </li>
+      <li>
+        <span class="label">Location</span>
+        <span>Ikoma, Nara, Japan (until August 2026) · Caen, France</span>
+      </li>
+    </ul>
+  </section>
+
+  <footer>
+    Travail, persévérance et humilité.
+  </footer>
+
+</div>
+</body>
+</html>
