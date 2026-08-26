@@ -214,6 +214,12 @@
       border-color: #333;
     }
 
+    .entry-links button.active {
+      background: var(--muted);
+      color: var(--cream);
+      border-color: var(--muted);
+    }
+
     .naist-memories {
       display: none;
       margin-top: 20px;
@@ -331,16 +337,16 @@
       opacity: 1;
       z-index: 1;
     }
-    .photo-grid.spread img:nth-child(1)  { transform: translate(-230%, -10px) rotate(-14deg); }
-    .photo-grid.spread img:nth-child(2)  { transform: translate(-180%, 10px)  rotate(9deg); }
-    .photo-grid.spread img:nth-child(3)  { transform: translate(-130%, -6px)  rotate(-6deg); }
-    .photo-grid.spread img:nth-child(4)  { transform: translate(-80%, 8px)    rotate(5deg); }
-    .photo-grid.spread img:nth-child(5)  { transform: translate(-30%, -8px)   rotate(-3deg); }
-    .photo-grid.spread img:nth-child(6)  { transform: translate(20%, 8px)     rotate(4deg); }
-    .photo-grid.spread img:nth-child(7)  { transform: translate(70%, -6px)    rotate(-7deg); }
-    .photo-grid.spread img:nth-child(8)  { transform: translate(120%, 10px)   rotate(6deg); }
-    .photo-grid.spread img:nth-child(9)  { transform: translate(170%, -8px)   rotate(-5deg); }
-    .photo-grid.spread img:nth-child(10) { transform: translate(220%, 6px)    rotate(10deg); }
+    .photo-grid.spread img:nth-child(1)  { transform: translate(-310%, 10%) rotate(-14deg); }
+    .photo-grid.spread img:nth-child(2)  { transform: translate(-210%, 10%) rotate(9deg); }
+    .photo-grid.spread img:nth-child(3)  { transform: translate(-110%, 10%) rotate(-6deg); }
+    .photo-grid.spread img:nth-child(4)  { transform: translate(-10%,  10%) rotate(5deg); }
+    .photo-grid.spread img:nth-child(5)  { transform: translate(90%,   10%) rotate(-3deg); }
+    .photo-grid.spread img:nth-child(6)  { transform: translate(-310%, 60%) rotate(4deg); }
+    .photo-grid.spread img:nth-child(7)  { transform: translate(-210%, 60%) rotate(-7deg); }
+    .photo-grid.spread img:nth-child(8)  { transform: translate(-110%, 60%) rotate(6deg); }
+    .photo-grid.spread img:nth-child(9)  { transform: translate(-10%,  60%) rotate(-5deg); }
+    .photo-grid.spread img:nth-child(10) { transform: translate(90%,   60%) rotate(10deg); }
 
     @media (max-width: 480px) {
       .entry { grid-template-columns: 1fr; }
@@ -454,8 +460,17 @@
   function toggleMemories() {
     const box = document.getElementById("naist-memories");
     const grid = document.getElementById("naist-photo-grid");
-    const opening = !box.classList.contains("show");
+    const btn = document.getElementById("memories-btn");
 
+    if (grid.classList.contains("spread")) {
+      grid.classList.remove("spread");
+      btn.classList.remove("active");
+      btn.textContent = "View Memories";
+      box.classList.remove("show");
+      return;
+    }
+
+    const opening = !box.classList.contains("show");
     if (opening) {
       box.classList.add("show");
       grid.classList.remove("spread");
@@ -468,6 +483,7 @@
 
   function handleGridClick(event) {
     const grid = document.getElementById("naist-photo-grid");
+    const btn = document.getElementById("memories-btn");
 
     // while stacked, clicking anywhere on the pile (including a photo) fans it out
     if (grid.classList.contains("stacked")) {
@@ -478,6 +494,8 @@
 
       grid.classList.remove("stacked");
       grid.classList.add("spread");
+      btn.classList.add("active");
+      btn.textContent = "Fermer";
       return;
     }
 
@@ -585,7 +603,7 @@
         </p>
         <div class="entry-links">
 
-          <button type="button" onclick="toggleMemories()">
+          <button type="button" id="memories-btn" onclick="toggleMemories()">
             View Memories
           </button>
         </div>
