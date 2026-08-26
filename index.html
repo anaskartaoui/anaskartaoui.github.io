@@ -16,7 +16,7 @@
       --rule:  #c8c0aa;
       --accent:#2c5282;
       --max-w: 920px;
-      font-size: 19px;
+      font-size: 21px; /* bumped base size */
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,7 +27,7 @@
       background: var(--cream);
       color: var(--ink);
       font-family: "Computer Modern Serif", "CMU Serif", Georgia, serif;
-      font-size: 17px;
+      font-size: 19px; /* was 17px */
       line-height: 1.75;
     }
 
@@ -45,7 +45,7 @@
       gap: 2rem;
       padding: 1.2rem 2rem;
       border-bottom: 1px solid var(--rule);
-      font-size: 14px;
+      font-size: 16px; /* was 14px */
       letter-spacing: 0.04em;
       position: sticky;
       top: 0;
@@ -66,13 +66,13 @@
       border-bottom: 1.5px solid var(--ink);
     }
     .header h1 {
-      font-size: 2.6rem;
+      font-size: 2.9rem; /* was 2.6rem */
       font-weight: normal;
       letter-spacing: 0.02em;
       margin-bottom: .4rem;
     }
     .header .subtitle {
-      font-size: 1rem;
+      font-size: 1.15rem; /* was 1rem */
       color: var(--muted);
       font-style: italic;
       margin-bottom: 1.2rem;
@@ -81,7 +81,7 @@
       display: flex;
       justify-content: center;
       gap: 1.6rem;
-      font-size: 16px;
+      font-size: 18px; /* was 16px */
       flex-wrap: wrap;
     }
     .header .links a {
@@ -98,7 +98,7 @@
     }
 
     section h2 {
-      font-size: 1.15rem;
+      font-size: 1.3rem; /* was 1.15rem */
       font-weight: normal;
       font-variant: small-caps;
       letter-spacing: 0.08em;
@@ -116,7 +116,7 @@
       grid-template-columns: 1fr 160px;
       gap: 2rem;
       align-items: start;
-      font-size: 18px;
+      font-size: 20px; /* was 18px */
     }
     .avatar {
       width: 120px;
@@ -148,33 +148,199 @@
     /* ── Education / Experience entries ─────── */
     .entry {
       display: grid;
-      grid-template-columns: 110px 1fr;
+      grid-template-columns: 120px 1fr;
       gap: .5rem 1.4rem;
       margin-bottom: 1.6rem;
       align-items: start;
     }
     .entry-year {
-      font-size: 15px;
+      font-size: 17px; /* was 15px */
       color: var(--muted);
       padding-top: 2px;
       text-align: right;
       white-space: nowrap;
     }
     .entry-body h3 {
-      font-size: 1rem;
+      font-size: 1.15rem; /* was 1rem */
       font-weight: normal;
       font-style: italic;
       margin-bottom: .1rem;
     }
     .entry-body .place {
-      font-size: 16px;
+      font-size: 18px; /* was 16px */
       color: var(--muted);
       margin-bottom: .3rem;
     }
     .entry-body p {
-      font-size: 16px;
+      font-size: 18px; /* was 16px */
       margin-bottom: 0;
     }
+
+    .entry-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+
+    .entry-links a,
+    .entry-links button {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      background: transparent;
+      color: var(--muted);
+      font-family: inherit;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .entry-links a:hover,
+    .entry-links button:hover {
+      background: var(--muted);
+      border-color: var(--muted);
+      color: var(--cream);
+    }
+
+    .entry-links a:active,
+    .entry-links button:active {
+      background: #333;
+      border-color: #333;
+    }
+
+    .naist-memories {
+      display: none;
+      margin-top: 20px;
+      position: relative;
+    }
+
+    .naist-memories.show {
+      display: block;
+    }
+
+    .camera-flash {
+      position: absolute;
+      inset: 0;
+      background: #fff;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 5;
+      border-radius: 4px;
+    }
+
+    .camera-flash.flash {
+      animation: flashPop 0.5s ease-out;
+    }
+
+    @keyframes flashPop {
+      0%   { opacity: 0; }
+      15%  { opacity: 0.95; }
+      100% { opacity: 0; }
+    }
+
+    .photo-grid {
+      position: relative;
+      display: block;
+      height: 260px;
+      margin-top: 10px;
+    }
+
+    .photo-grid img {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      width: 200px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 4px solid #fff;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+      opacity: 0;
+      cursor: pointer;
+      transform: translate(-50%, -30px) rotate(0deg) scale(0.9);
+      transition: transform 0.5s cubic-bezier(.2,.8,.3,1.1), opacity 0.4s ease, box-shadow 0.2s ease;
+    }
+
+    .photo-grid.stacked img:hover {
+      box-shadow: 0 10px 22px rgba(0,0,0,0.35);
+    }
+
+    .photo-grid.spread img:hover {
+      box-shadow: 0 10px 26px rgba(0,0,0,0.4);
+      z-index: 20 !important;
+    }
+
+    /* ── Lightbox ───────────────────────────── */
+    .lightbox-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(20,18,14,0.85);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .lightbox-overlay.show {
+      display: flex;
+    }
+    .lightbox-overlay img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 6px;
+      border: 5px solid #fff;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      color: #fff;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      line-height: 1;
+      font-family: inherit;
+    }
+
+    /* messy stacked pile, one on top of another, slightly offset + rotated */
+    .photo-grid.stacked img {
+      opacity: 1;
+      transition: transform 0.5s cubic-bezier(.2,.8,.3,1.1), opacity 0.4s ease;
+    }
+    .photo-grid.stacked img:nth-child(1)  { transform: translate(-58%, 0px)   rotate(-9deg)  scale(1); z-index: 10; }
+    .photo-grid.stacked img:nth-child(2)  { transform: translate(-42%, 6px)   rotate(7deg)   scale(1); z-index: 9; }
+    .photo-grid.stacked img:nth-child(3)  { transform: translate(-52%, 14px)  rotate(-4deg)  scale(1); z-index: 8; }
+    .photo-grid.stacked img:nth-child(4)  { transform: translate(-46%, 4px)   rotate(11deg)  scale(1); z-index: 7; }
+    .photo-grid.stacked img:nth-child(5)  { transform: translate(-60%, 18px)  rotate(3deg)   scale(1); z-index: 6; }
+    .photo-grid.stacked img:nth-child(6)  { transform: translate(-40%, 10px)  rotate(-12deg) scale(1); z-index: 5; }
+    .photo-grid.stacked img:nth-child(7)  { transform: translate(-50%, 22px)  rotate(8deg)   scale(1); z-index: 4; }
+    .photo-grid.stacked img:nth-child(8)  { transform: translate(-55%, 2px)   rotate(-6deg)  scale(1); z-index: 3; }
+    .photo-grid.stacked img:nth-child(9)  { transform: translate(-44%, 16px)  rotate(5deg)   scale(1); z-index: 2; }
+    .photo-grid.stacked img:nth-child(10) { transform: translate(-49%, 8px)   rotate(-2deg)  scale(1); z-index: 1; }
+
+    /* fanned out spread, triggered on click */
+    .photo-grid.spread img {
+      opacity: 1;
+      z-index: 1;
+    }
+    .photo-grid.spread img:nth-child(1)  { transform: translate(-230%, -10px) rotate(-14deg); }
+    .photo-grid.spread img:nth-child(2)  { transform: translate(-180%, 10px)  rotate(9deg); }
+    .photo-grid.spread img:nth-child(3)  { transform: translate(-130%, -6px)  rotate(-6deg); }
+    .photo-grid.spread img:nth-child(4)  { transform: translate(-80%, 8px)    rotate(5deg); }
+    .photo-grid.spread img:nth-child(5)  { transform: translate(-30%, -8px)   rotate(-3deg); }
+    .photo-grid.spread img:nth-child(6)  { transform: translate(20%, 8px)     rotate(4deg); }
+    .photo-grid.spread img:nth-child(7)  { transform: translate(70%, -6px)    rotate(-7deg); }
+    .photo-grid.spread img:nth-child(8)  { transform: translate(120%, 10px)   rotate(6deg); }
+    .photo-grid.spread img:nth-child(9)  { transform: translate(170%, -8px)   rotate(-5deg); }
+    .photo-grid.spread img:nth-child(10) { transform: translate(220%, 6px)    rotate(10deg); }
 
     @media (max-width: 480px) {
       .entry { grid-template-columns: 1fr; }
@@ -188,10 +354,13 @@
       border-left: 2px solid var(--rule);
     }
     .project h3 {
-      font-size: 1rem;
+      font-size: 1.15rem; /* was 1rem */
       font-style: italic;
       font-weight: normal;
       margin-bottom: .2rem;
+    }
+    .project p {
+      font-size: 18px;
     }
     .project .tags {
       display: flex;
@@ -200,7 +369,7 @@
       margin: .5rem 0;
     }
     .tag {
-      font-size: 14px;
+      font-size: 15px; /* was 14px */
       font-family: "Computer Modern Typewriter", "Courier New", monospace;
       background: #ede9df;
       color: var(--muted);
@@ -208,7 +377,7 @@
       border-radius: 2px;
     }
     .project a {
-      font-size: 14px;
+      font-size: 16px; /* was 14px */
       color: var(--accent);
       text-decoration: none;
     }
@@ -221,7 +390,7 @@
       gap: 1.2rem;
     }
     .skill-group h3 {
-      font-size: 14px;
+      font-size: 16px; /* was 14px */
       font-variant: small-caps;
       letter-spacing: .06em;
       font-weight: normal;
@@ -233,7 +402,7 @@
       padding: 0;
     }
     .skill-group li {
-      font-size: 16px;
+      font-size: 18px; /* was 16px */
       padding: 2px 0;
     }
     .skill-group li::before {
@@ -252,15 +421,15 @@
     .contact-list li {
       display: flex;
       gap: .8rem;
-      font-size: 17px;
+      font-size: 19px; /* was 17px */
       align-items: baseline;
     }
     .contact-list .label {
-      font-size: 15px;
+      font-size: 17px; /* was 15px */
       font-variant: small-caps;
       letter-spacing: .05em;
       color: var(--muted);
-      min-width: 80px;
+      min-width: 90px;
     }
     .contact-list a {
       color: var(--accent);
@@ -274,12 +443,62 @@
       border-top: 0.5px solid var(--rule);
       padding-top: 1.2rem;
       text-align: center;
-      font-size: 16px;
+      font-size: 18px; /* was 16px */
       color: var(--muted);
       font-style: italic;
     }
   </style>
 </head>
+
+<script>
+  function toggleMemories() {
+    const box = document.getElementById("naist-memories");
+    const grid = document.getElementById("naist-photo-grid");
+    const opening = !box.classList.contains("show");
+
+    if (opening) {
+      box.classList.add("show");
+      grid.classList.remove("spread");
+      grid.classList.add("stacked");
+    } else {
+      box.classList.remove("show");
+      grid.classList.remove("stacked", "spread");
+    }
+  }
+
+  function handleGridClick(event) {
+    const grid = document.getElementById("naist-photo-grid");
+
+    // while stacked, clicking anywhere on the pile (including a photo) fans it out
+    if (grid.classList.contains("stacked")) {
+      const flash = document.getElementById("naist-flash");
+      flash.classList.remove("flash");
+      void flash.offsetWidth;
+      flash.classList.add("flash");
+
+      grid.classList.remove("stacked");
+      grid.classList.add("spread");
+      return;
+    }
+
+    // once spread, clicking a specific photo opens it big
+    if (event.target.tagName === "IMG") {
+      openLightbox(event.target.src, event.target.alt);
+    }
+  }
+
+  function openLightbox(src, alt) {
+    const overlay = document.getElementById("lightbox-overlay");
+    const img = document.getElementById("lightbox-img");
+    img.src = src;
+    img.alt = alt;
+    overlay.classList.add("show");
+  }
+
+  function closeLightbox() {
+    document.getElementById("lightbox-overlay").classList.remove("show");
+  }
+</script>
 <body>
 
 <nav>
@@ -311,15 +530,17 @@
     <div class="about-grid">
       <div>
         <p>
-          I am a second-year engineering student at <em>ENSICAEN</em> (École Nationale Supérieure
+          I am a third-year engineering student (M2) at <em>ENSICAEN</em> (École Nationale Supérieure
           d'Ingénieurs de Caen), specialising in Cybersecurity and Artificial Intelligence.
-          I am currently on a four-month <em>research internship</em> at
-          <em>NAIST</em> (Nara Institute of Science and Technology) in Japan, where I work on
+          I just finished a four-month <em>research internship</em> at
+          <em>NAIST</em> (Nara Institute of Science and Technology) in Japan, where I worked on
           machine learning and deep learning methods for vulnerability detection in C/C++ code.
         </p>
         <p>
           My research interests sit at the intersection of software security, static analysis,
-          and deep learning for code. Outside of research I am drawn to sports analytics and data science applied to football.
+          and deep learning for code. I am particularly interested in the application of machine
+          learning to software vulnerability detection, as well as the security of machine learning
+          models themselves (adversarial attacks and defenses).
         </p>
       </div>
       <img class="avatar" src="photo.jpeg" alt="Anas" />
@@ -354,13 +575,35 @@
     <h2>Experience</h2>
 
     <div class="entry">
-      <div class="entry-year">Apr – August 2026</div>
+      <div class="entry-year">Apr – Aug 2026</div>
       <div class="entry-body">
-        <h3>Special Research Intern — ML for Vulnerability Detection in C and C++ source code</h3>
+        <h3>Special Research Intern — ML for Vulnerability Detection in C and C++ Source Code</h3>
         <div class="place">NAIST, Nara, Japan · supervised by Dr. Youki Kadobayashi</div>
         <p>
-          Research internship focused on applying machine learning and deep learning techniques to the problem of vulnerability detection in C and C++ source code.
+          Research internship focused on applying machine learning and deep learning techniques to
+          the problem of vulnerability detection in C and C++ source code.
         </p>
+        <div class="entry-links">
+
+          <button type="button" onclick="toggleMemories()">
+            View Memories
+          </button>
+        </div>
+        <div id="naist-memories" class="naist-memories">
+          <div class="camera-flash" id="naist-flash"></div>
+          <div class="photo-grid" id="naist-photo-grid" onclick="handleGridClick(event)">
+            <img src="assets/imgs/1.jpeg" alt="NAIST internship">
+            <img src="assets/imgs/2.jpeg" alt="NAIST internship">
+            <img src="assets/imgs/3.jpeg" alt="NAIST internship">
+            <img src="assets/imgs/4.jpeg" alt="NAIST internship">
+            <img src="assets/imgs/5.jpeg" alt="NAIST internship">
+            <img src="assets/imgs/6.jpeg" alt="NAIST internship">
+            <img src="assets/imgs/7.jpeg" alt="NAIST internship">
+            <img src="assets/imgs/8.jpeg" alt="NAIST internship">
+            <img src="assets/imgs/9.jpeg" alt="NAIST internship">
+            <img src="assets/imgs/10.jpeg" alt="NAIST internship">
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -368,11 +611,14 @@
   <!-- ── Projects ── -->
   <section id="projects">
     <h2>Projects</h2>
+
     <div class="project">
-      <h3> ML for Vulnerability Detection in C/C++ Code (on going)</h3>
+      <h3>ML for Vulnerability Detection in C/C++ Code (ongoing)</h3>
       <p>
-        Research project on applying machine learning and deep learning techniques to the problem of vulnerability detection in C and C++ source code.
-        Implemented a classical ML approach for experimentation, and a deep learning model on a dataset of real-world vulnerabilities. Compared with LLM models.
+        Research project on applying machine learning and deep learning techniques to the problem of
+        vulnerability detection in C and C++ source code. Implemented a classical ML approach for
+        experimentation, and a deep learning model on a dataset of real-world vulnerabilities.
+        Compared with LLM models.
       </p>
       <div class="tags">
         <span class="tag">Python</span>
@@ -387,9 +633,9 @@
     <div class="project">
       <h3>Premier League Scouting Tool</h3>
       <p>
-        Data-driven football scouting dashboard built on FBref statistics.
-        PCA dimensionality reduction + K-Means clustering to identify player archetypes;
-        Random Forest classifier for role prediction. Deployed with Streamlit.
+        Data-driven football scouting dashboard built on FBref statistics. PCA dimensionality
+        reduction + K-Means clustering to identify player archetypes; Random Forest classifier for
+        role prediction. Deployed with Streamlit.
       </p>
       <div class="tags">
         <span class="tag">Python</span>
@@ -403,8 +649,10 @@
     <div class="project">
       <h3>Lost in a Club</h3>
       <p>
-        A interactive web application for sport clubs to make their fans discover their facilities, services and history, with an escape game. Developed as a team project for a software engineering course.
-        Built with Flutter. Implement a real-time game events system, a admin website to manage the application, and a dynamic quiz system for the escape game.
+        An interactive web application for sport clubs to make their fans discover their facilities,
+        services, and history, with an escape game. Developed as a team project for a software
+        engineering course. Built with Flutter. Implemented a real-time game events system, an
+        admin website to manage the application, and a dynamic quiz system for the escape game.
       </p>
       <div class="tags">
         <span class="tag">Flutter</span>
@@ -428,19 +676,6 @@
       </div>
       <a href="https://github.com/anaskartaoui/sudoku-assistant-qt" target="_blank">→ GitHub</a>
     </div>
-
-    <div class="project">
-      <h3>Adversarial ML Study</h3>
-      <p>
-        Hands-on exploration of evasion attacks (FGSM, PGD, C&amp;W) and defences
-        (randomised smoothing, DP-SGD) on image classifiers, with ablation study
-        on certified robustness under l∞ perturbation budgets.
-      </p>
-      <div class="tags">
-        <span class="tag">Python</span>
-        <span class="tag">PyTorch</span>
-      </div>
-    </div>
   </section>
 
   <!-- ── Skills ── -->
@@ -453,9 +688,9 @@
           <li>C / C++</li>
           <li>Java</li>
           <li>Python</li>
+          <li>Bash</li>
           <li>JavaScript / Node.js</li>
           <li>Dart (Flutter)</li>
-          <li>Bash</li>
         </ul>
       </div>
       <div class="skill-group">
@@ -509,7 +744,7 @@
       </li>
       <li>
         <span class="label">Location</span>
-        <span>Ikoma, Nara, Japan (until August 2026) · Caen, France</span>
+        <span>Caen, France</span>
       </li>
     </ul>
   </section>
@@ -519,5 +754,11 @@
   </footer>
 
 </div>
+
+<div class="lightbox-overlay" id="lightbox-overlay" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()" />
+</div>
+
 </body>
 </html>
