@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css" />
+  <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" />
+  <title>Article · Moul Casquette</title>
+
+  <style>
+    body {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      background: #faf8f2;
+      color: #1a1a1a;
+      font-family: "Computer Modern Serif", "CMU Serif", Georgia, serif;
+      font-size: 19px;
+      line-height: 1.75;
+    }
+
+    a { color: #2c5282; }
+    h1 { line-height: 1.2; }
+    img { max-width: 100%; height: auto; }
+    pre { overflow-x: auto; }
+  </style>
+</head>
+
+
+
+<body>
+  <a href="blog.html">← Retour au blog</a>
+
+  <main>
+    <h1 id="article-title"></h1>
+    <article id="article-content">
+      Le contenu de l’article apparaîtra ici.
+    </article>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.1/dist/markdown-it.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it-texmath@1.0.0/texmath.min.js"></script>   
+  <script>
+    async function loadArticle() {
+        const content = document.getElementById("article-content");
+        const slug = new URLSearchParams(window.location.search).get("post");
+
+        try {
+        if (!slug || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
+            throw new Error("Article invalide.");
+        }
+
+        const response = await fetch(`posts/${slug}.md`);
+
+        if (!response.ok) {
+            throw new Error("Article introuvable.");
+        }
+
+        const markdown = await response.text();
+        const parser = window.markdownit({ html: false })
+            .use(window.texmath, {
+                engine: window.katex,
+                delimiters: "dollars",
+                katexOptions: {
+                trust: false,
+                throwOnError: false
+                }
+            });
+        content.innerHTML = parser.render(markdown);
+        } catch (error) {
+        content.textContent = error.message;
+        }
+    }
+
+    loadArticle();
+   </script>
+</body>
+</html>

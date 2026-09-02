@@ -110,6 +110,42 @@
 
     p { margin-bottom: .9rem; }
 
+    /* ── Blog preview ───────────────────────── */
+    .blog-preview {
+      display: grid;
+      grid-template-columns: 1fr 150px;
+      gap: 2rem;
+      align-items: center;
+      padding: 1.5rem;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.24);
+    }
+    .blog-preview h3 {
+      font-size: 1.25rem;
+      font-weight: normal;
+      margin-bottom: .45rem;
+    }
+    .blog-preview img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      object-position: 50% 28%;
+      border-radius: 50%;
+      border: 1px solid var(--rule);
+      background: #fff;
+    }
+    .blog-link {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .blog-link:hover { text-decoration: underline; }
+
+    @media (max-width: 560px) {
+      .blog-preview { grid-template-columns: 1fr; }
+      .blog-preview img { grid-row: 1; margin: 0 auto; }
+    }
+
     /* ── About ──────────────────────────────── */
     .about-grid {
       display: grid;
@@ -525,6 +561,7 @@
   <a href="#education">Education</a>
   <a href="#experience">Experience</a>
   <a href="#projects">Projects</a>
+  <a href="#blog">Blog</a>
   <a href="#skills">Skills</a>
   <a href="#contact">Contact</a>
 </nav>
@@ -561,7 +598,7 @@
           models themselves (adversarial attacks and defenses).
         </p>
       </div>
-      <img class="avatar" src="photo.jpeg" alt="Anas" />
+      <img class="avatar" src="photo.jpg" alt="Anas" />
     </div>
   </section>
 
@@ -693,6 +730,22 @@
         <span class="tag">MVC</span>
       </div>
       <a href="https://github.com/anaskartaoui/sudoku-assistant-qt" target="_blank">→ GitHub</a>
+    </div>
+  </section>
+
+  <!-- ── Blog ── -->
+  <section id="blog">
+    <h2>Blog</h2>
+    <div class="blog-preview">
+      <div>
+        <h3>Moul Casquette Explains</h3>
+        <p>
+          Notes on machine learning, deep learning, and computer science—explained
+          simply through the concepts I learn.
+        </p>
+        <a class="blog-link" href="blog.html">Visit the blog →</a>
+      </div>
+      <img src="character.png" alt="Moul Casquette, the blog character" />
     </div>
   </section>
 
