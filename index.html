@@ -45,7 +45,7 @@
       gap: 2rem;
       padding: 1.2rem 2rem;
       border-bottom: 1px solid var(--rule);
-      font-size: 16px; /* was 14px */
+      font-size: 20px; /* was 14px */
       letter-spacing: 0.04em;
       position: sticky;
       top: 0;
@@ -131,9 +131,6 @@
       height: 150px;
       object-fit: cover;
       object-position: 50% 28%;
-      border-radius: 50%;
-      border: 1px solid var(--rule);
-      background: #fff;
     }
     .blog-link {
       color: var(--accent);
@@ -147,25 +144,18 @@
     }
 
     /* ── About ──────────────────────────────── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 160px;
-      gap: 2rem;
-      align-items: start;
-      font-size: 20px; /* was 18px */
-    }
     .avatar {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
+      width: 180px;
+      height: 180px;
+      border-radius: 10%; 
       border: 1px solid var(--rule);
       object-fit: cover;
       justify-self: center;
     }
     .avatar-placeholder {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
+      width: 180px;
+      height: 180px;
+      border-radius: 10%;
       border: 1px solid var(--rule);
       background: #ede9df;
       display: flex;
@@ -561,8 +551,8 @@
   <a href="#education">Education</a>
   <a href="#experience">Experience</a>
   <a href="#projects">Projects</a>
-  <a href="#blog">Blog</a>
   <a href="#skills">Skills</a>
+  <a href="#blog">Blog</a>
   <a href="#contact">Contact</a>
 </nav>
 
@@ -570,6 +560,7 @@
 
   <!-- ── Header ── -->
   <header class="header">
+    <img class="avatar" src="photo.jpeg" alt="Anas" />
     <h1>Anas KARTAOUI</h1>
     <p class="subtitle">Cybersecurity &amp; AI · ENSICAEN</p>
     <div class="links">
@@ -582,7 +573,6 @@
   <!-- ── About ── -->
   <section id="about">
     <h2>About</h2>
-    <div class="about-grid">
       <div>
         <p>
           I am a third-year engineering student (M2) at <em>ENSICAEN</em> (École Nationale Supérieure
@@ -598,8 +588,6 @@
           models themselves (adversarial attacks and defenses).
         </p>
       </div>
-      <img class="avatar" src="photo.jpg" alt="Anas" />
-    </div>
   </section>
 
   <!-- ── Education ── -->
@@ -686,22 +674,6 @@
     </div>
 
     <div class="project">
-      <h3>Premier League Scouting Tool</h3>
-      <p>
-        Data-driven football scouting dashboard built on FBref statistics. PCA dimensionality
-        reduction + K-Means clustering to identify player archetypes; Random Forest classifier for
-        role prediction. Deployed with Streamlit.
-      </p>
-      <div class="tags">
-        <span class="tag">Python</span>
-        <span class="tag">scikit-learn</span>
-        <span class="tag">Streamlit</span>
-        <span class="tag">FBref</span>
-      </div>
-      <a href="https://github.com/anaskartaoui/pl-scouting-tool" target="_blank">→ GitHub</a>
-    </div>
-
-    <div class="project">
       <h3>Lost in a Club</h3>
       <p>
         An interactive web application for sport clubs to make their fans discover their facilities,
@@ -733,21 +705,7 @@
     </div>
   </section>
 
-  <!-- ── Blog ── -->
-  <section id="blog">
-    <h2>Blog</h2>
-    <div class="blog-preview">
-      <div>
-        <h3>Moul Casquette Explains</h3>
-        <p>
-          Notes on machine learning, deep learning, and computer science—explained
-          simply through the concepts I learn.
-        </p>
-        <a class="blog-link" href="blog.html">Visit the blog →</a>
-      </div>
-      <img src="character.png" alt="Moul Casquette, the blog character" />
-    </div>
-  </section>
+
 
   <!-- ── Skills ── -->
   <section id="skills">
@@ -794,6 +752,22 @@
           <li>Qt6</li>
         </ul>
       </div>
+    </div>
+  </section>
+
+  <!-- ── Blog ── -->
+  <section id="blog">
+    <h2>Blog</h2>
+    <div class="blog-preview">
+      <div>
+        <h3>Moul Casquette Explains</h3>
+        <p>
+          Notes on machine learning, deep learning, and computer science—explained
+          simply through the concepts I learn.
+        </p>
+        <a class="blog-link" href="blog.html">Visit the blog →</a>
+      </div>
+      <img src="character.png" alt="Moul Casquette, the blog character" />
     </div>
   </section>
 
